@@ -78,6 +78,7 @@ addFeatureMatrix <- function(
   args$allCells <- allCells
   args$X <- seq_along(ArrowFiles)
   args$features <- features
+  args$matrixName <- matrixName
   args$FUN <- .addFeatureMatrix
   args$registryDir <- file.path(outDir, "CountFeaturesRegistry")
 

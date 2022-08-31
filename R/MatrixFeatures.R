@@ -181,7 +181,7 @@ addPeakMatrix <- function(
   features = NULL,
   cellNames = NULL, 
   allCells = NULL,
-  matrixName = "PeakMatrix", 
+  matrixName = NULL, 
   ceiling = 4, 
   binarize = FALSE,
   tstart = NULL,
@@ -244,6 +244,7 @@ addPeakMatrix <- function(
     Class <- "integer"
     Units <- "Counts"
   }
+  print(paste0('initializeMat: ', matrixName))
   o <- .initializeMat(
     ArrowFile = ArrowFile,
     Group = matrixName,

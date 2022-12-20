@@ -75,7 +75,7 @@ addGeneScoreMatrix <- function(
   .validInput(input = tileSize, name = "tileSize", valid = c("integer"))
   .validInput(input = ceiling, name = "ceiling", valid = c("integer"))
   .validInput(input = useGeneBoundaries, name = "useGeneBoundaries", valid = c("boolean"))
-  .validInput(input = scaleTo, name = "scaleTo", valid = c("numeric", "null"))
+  .validInput(input = scaleTo, name = "scaleTo", valid = c("numeric"))
   .validInput(input = excludeChr, name = "excludeChr", valid = c("character", "null"))
   .validInput(input = blacklist, name = "blacklist", valid = c("GRanges", "null"))
   .validInput(input = threads, name = "threads", valid = c("integer"))
@@ -518,7 +518,7 @@ addGeneScoreMatrix <- function(
       file.remove(paste0(tmpFile, "-", chrz, ".rds"))
 
       #Normalize
-      if(!is.null(scaleTo)){
+      if(scaleTo > 0){
         matGS@x <- as.numeric(scaleTo * matGS@x/rep.int(totalGS, Matrix::diff(matGS@p)))
       }
 

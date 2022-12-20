@@ -75,7 +75,7 @@ addGeneScoreMatrix <- function(
   .validInput(input = tileSize, name = "tileSize", valid = c("integer"))
   .validInput(input = ceiling, name = "ceiling", valid = c("integer"))
   .validInput(input = useGeneBoundaries, name = "useGeneBoundaries", valid = c("boolean"))
-  .validInput(input = scaleTo, name = "scaleTo", valid = c("numeric"))
+  .validInput(input = scaleTo, name = "scaleTo", valid = c("numeric", "null"))
   .validInput(input = excludeChr, name = "excludeChr", valid = c("character", "null"))
   .validInput(input = blacklist, name = "blacklist", valid = c("GRanges", "null"))
   .validInput(input = threads, name = "threads", valid = c("integer"))
@@ -198,7 +198,7 @@ addGeneScoreMatrix <- function(
   .validInput(input = tileSize, name = "tileSize", valid = c("integer"))
   .validInput(input = ceiling, name = "ceiling", valid = c("integer"))
   .validInput(input = useGeneBoundaries, name = "useGeneBoundaries", valid = c("boolean"))
-  .validInput(input = scaleTo, name = "scaleTo", valid = c("numeric"))
+  .validInput(input = scaleTo, name = "scaleTo", valid = c("numeric", 'null'))
   .validInput(input = excludeChr, name = "excludeChr", valid = c("character", "null"))
   .validInput(input = blacklist, name = "blacklist", valid = c("GRanges", "null"))
   .validInput(input = cellNames, name = "cellNames", valid = c("character", "null"))
@@ -518,7 +518,9 @@ addGeneScoreMatrix <- function(
       file.remove(paste0(tmpFile, "-", chrz, ".rds"))
 
       #Normalize
-      matGS@x <- as.numeric(scaleTo * matGS@x/rep.int(totalGS, Matrix::diff(matGS@p)))
+      if(!is.null(scaleTo)){
+        matGS@x <- as.numeric(scaleTo * matGS@x/rep.int(totalGS, Matrix::diff(matGS@p)))
+      }
 
       #Round to Reduce Digits After Final Normalization
       matGS@x <- round(matGS@x, 3)

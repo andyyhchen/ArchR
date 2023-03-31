@@ -203,7 +203,11 @@ addGeneExpressionMatrix <- function(
   sampleName <- .sampleName(ArrowFile)
   
   #Check
-  matrixName <- "GeneExpressionMatrix"
+  if(isADT==FALSE){
+    matrixName <- "GeneExpressionMatrix"
+   }else{
+    matrixName <- "ProteinExpressionMatrix"
+    }
   o <- h5closeAll()
   o <- .createArrowGroup(ArrowFile = ArrowFile, group = matrixName, force = force, logFile = logFile)
   

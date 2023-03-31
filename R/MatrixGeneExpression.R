@@ -144,6 +144,7 @@ addGeneExpressionMatrix <- function(
   args$registryDir <- file.path(outDir, "addGeneExpressionMatRegistry")
   args$qcInfo <- qcInfo
   args$seRNA <- seRNA
+  args$isADT <- isADT
   
   #Remove Input from args
   args$input <- NULL
@@ -194,7 +195,8 @@ addGeneExpressionMatrix <- function(
   subThreads = 1,
   force = FALSE,
   verbose = TRUE,
-  logFile = NULL
+  logFile = NULL,
+  isADT=NULL
 ){
   
   ArrowFile <- ArrowFiles[i]

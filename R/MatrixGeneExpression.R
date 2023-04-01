@@ -273,7 +273,7 @@ addGeneExpressionMatrix <- function(
   if(isADT == FALSE){
     assay(seRNA) <- .normalizeCols(assay(seRNA), scaleTo = scaleTo)
   }else{
-    assay(seRNA) <- as(clr(assay(seRNA)), 'dgCMatrix')
+    assay(seRNA) <- as(assay(seRNA), 'dgCMatrix')
   }
   
   uniqueChr <- unique(featureDF$seqnames)
